@@ -25,22 +25,26 @@ This project is a food truck locator application that allows users to find nearb
    ```bash
    git clone https://github.com/yourusername/food-truck-locator.git
    cd food-truck-locator
-2. **Create virtual environment** 
-     python3 -m venv venv
+2. **Create virtual environment**
+    ```bash
+    python3 -m venv venv
     source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-3. **Install backend dependencies** 
-    pip install -r requirements.txt
+4. **Install backend dependencies**
+   
+   ```bash
+   pip install -r requirements.txt
 
-4. **Create a file named requirements.txt in the project directory and add the following dependencies:**
+6. **Create a file named requirements.txt in the project directory and add the following dependencies:**
 
+    ```bash
     Flask
     pandas
 
-5. **Prepare your data** 
+7. **Prepare your data** 
     Make sure you have a CSV file named food-truck-data.csv with the necessary food truck data in the project directory.
 
-6. **Run the backend server** 
+8. **Run the backend server** 
     python app.py
 
 ## Frontend Setup
