@@ -64,4 +64,40 @@ This project is a food truck locator application that allows users to find nearb
     ```bash
     npm start
 
+Step 4: Access the application
+Open your web browser and navigate to http://localhost:3000.
+
+Project Structure
+php
+Copy code
+foodtruck-locator/
+├── foodtruck-be/         # Backend directory
+│   ├── app.py            # Flask application
+│   ├── food-truck-data.csv  # CSV file with food truck data
+│   └── requirements.txt  # Backend dependencies
+└── foodtruck-fe/         # Frontend directory
+    ├── public/
+    │   ├── index.html
+    │   └── foodtruckpic.jpeg # Image used in the frontend
+    ├── src/
+    │   ├── App.js        # Main React component
+    │   ├── App.css       # CSS styles
+    │   └── index.js      # Entry point for the React application
+    └── package.json      # Frontend dependencies
+Usage
+Open the application in your web browser.
+Use the checkbox to toggle between using your current location and manually entering a location.
+Enter a latitude, longitude, and radius if manually entering a location.
+Click the "Find Food Trucks" button to display nearby food trucks.
+Click on a food truck entry to view its detailed schedule.
+Contributing
+If you'd like to contribute to this project, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+License
+This project is licensed under the MIT License.
+
+Acknowledgements
+Icons by Icons8
+Built with React and Flask
+
 
