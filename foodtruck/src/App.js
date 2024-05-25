@@ -12,28 +12,49 @@ function App() {
   const [geoError, setGeoError] = useState(false); // Track if geolocation failed
 
   const fetchTrucks = useCallback(() => {
-    if ((lat !== '' && lon !== '') || (useGeolocation && !geoError)) {
+    if (lat && lon) {  // Check if lat and lon are not empty
       console.log(`Fetching trucks for lat: ${lat}, lon: ${lon}, radius: ${radius}`);
       axios.get('http://127.0.0.1:5000/api/foodtrucks', {
         params: { lat, lon, radius }
       })
+
       .then(response => {
+        console.log('Response data (raw):', response.data); // Log the raw response
+        console.log('Response data (stringified):', JSON.stringify(response.data)); // Log the stringified response
+        console.log('Type of response.data:', typeof response.data);
+
+        let data;
+        if (typeof response.data === 'string') {
+          try {
+            data = JSON.parse(response.data);
+            console.log('Parsed response data:', data);
+          } catch (e) {
+            console.error('Error parsing response data:', e);
+            setError('Error parsing response data.');
+            return;
+          }
+        } else {
+          data = response.data;
+        }
+
+
+        // Check if the response data is an array
         if (Array.isArray(response.data)) {
+          console.log('Response data is an array');
           setTrucks(response.data);
         } else {
           console.error('Expected an array but got', response.data);
+          setError('Unexpected response format');
         }
       })
       .catch(error => {
         console.error('Error fetching data:', error);
         setError('Error fetching data.');
       });
-    } else if (!useGeolocation) {
-      if (lat === '' || lon === ''){      
-        setError('Latitude and Longitude must be set before making the API request');
+    } else {
+      setError('Latitude and Longitude must be set before making the API request');
     }
-    }
-  }, [lat, lon, radius, useGeolocation, geoError]);
+  }, [lat, lon, radius]);
 
   useEffect(() => {
     if (useGeolocation) {
@@ -52,10 +73,10 @@ function App() {
   }, [useGeolocation]);
 
   useEffect(() => {
-    if ((lat !== '' && lon !== '') || (useGeolocation && !geoError)) {
+    if (lat && lon) {
       fetchTrucks();
     }
-  }, [lat, lon, fetchTrucks, useGeolocation, geoError]);
+  }, [lat, lon, fetchTrucks]);
 
   const handleToggleGeolocation = () => {
     setUseGeolocation(!useGeolocation);
