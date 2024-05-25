@@ -1,57 +1,141 @@
+/* App.css */
+:root {
+  --primary-color: #28a745;
+  --secondary-color: #218838;
+  --background-color: #f7f7f7;
+  --text-color: #333;
+  --text-light-color: #555;
+  --border-color: #ddd;
+  --font-family: 'Arial', sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
 }
 
 .App {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
   text-align: center;
+  background-color: var(--background-color);
+  padding: 20px;
+}
+
+h1 {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-size: calc(1.5rem + 0.5vw); /* Smaller responsive font size */
 }
 
 .input-group {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 20px;
+  gap: 10px;
 }
 
 .input-group label {
-  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: calc(0.9rem + 0.4vw); /* Smaller responsive font size */
 }
 
-.input-group input {
-  margin-left: 10px;
-  padding: 5px;
+.input-group input[type="text"] {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: calc(0.9rem + 0.2vw); /* Smaller responsive font size */
+}
+
+.input-group input[type="checkbox"] {
+  margin-right: 5px;
+  transform: scale(1.2); /* Scale the checkbox to make it more responsive */
 }
 
 .button {
-  margin-top: 10px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: calc(0.9rem + 0.4vw); /* Smaller responsive font size */
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: var(--secondary-color);
 }
 
 .food-truck-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .food-truck {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: left;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 20px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Add gap between items */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: transform 0.2s ease; /* Smooth transition for scaling */
+  width: 100%; /* Make the card span almost across the window */
+  min-width: 900px; /* Set a maximum width for the card */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.food-truck:hover {
+  transform: scale(1.05); /* Scale up on hover for a nice effect */
+}
+
+.food-truck-link {
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit text color */
+  display: flex; /* Make link a flex container */
+  justify-content: center; /* Center align the link container */
+}
+
+.text-blurb {
+  display: flex; 
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start */
+  text-align: left; /* Align text to the left */
+  gap: 10px; /* Add gap between text elements */
+  flex: 1; /* Allow text to take up remaining space */
+}
+
+.truck-image {
+  width: 90px;
+  height: 70px;
+  margin-right: 20px;
+  flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 .food-truck h2 {
-  margin-top: 0;
+  margin: 0 0 10px;
+  color: var(--text-color);
+  font-size: calc(1.2rem + 0.4vw); /* Smaller responsive font size */
+}
+
+.food-truck p {
+  margin: 5px 0;
+  color: var(--text-light-color);
+  font-size: calc(0.9rem + 0.3vw); /* Smaller responsive font size */
+}
+
+.error {
+  color: red;
+  margin-bottom: 20px;
+  font-size: calc(0.9rem + 0.3vw); /* Smaller responsive font size */
 }

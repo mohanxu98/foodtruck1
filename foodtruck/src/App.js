@@ -17,7 +17,6 @@ function App() {
       axios.get('http://127.0.0.1:5000/api/foodtrucks', {
         params: { lat, lon, radius }
       })
-
       .then(response => {
         console.log('Response data (raw):', response.data); // Log the raw response
         console.log('Response data (stringified):', JSON.stringify(response.data)); // Log the stringified response
@@ -37,14 +36,13 @@ function App() {
           data = response.data;
         }
 
-
         // Check if the response data is an array
-        if (Array.isArray(response.data)) {
+        if (Array.isArray(data)) {
           console.log('Response data is an array');
+          setTrucks(data);
           setError(''); // Clear any previous errors
-          setTrucks(response.data);
         } else {
-          console.error('Expected an array but got', response.data);
+          console.error('Expected an array but got', data);
           setError('Unexpected response format');
         }
       })
@@ -66,16 +64,12 @@ function App() {
         setGeoError(false);
       }, (error) => {
         console.error('Error getting geolocation:', error);
-        setError('Error getting geolocation. If you want to use current location, please enable location setting with Google');
+        setError('Error getting geolocation. To use current location, please enable location sharing in Google Settings');
         setGeoError(true);
         setUseGeolocation(false);
       });
     }
   }, [useGeolocation]);
-
-  useEffect(() => {
-   
-  }, [lat, lon, fetchTrucks]);
 
   const handleToggleGeolocation = () => {
     setUseGeolocation(!useGeolocation);
@@ -126,19 +120,24 @@ function App() {
             onChange={e => setRadius(e.target.value)}
           />
         </label>
-        <button onClick={fetchTrucks}>Find Food Trucks</button>
+        <button className="button" onClick={fetchTrucks}>Find Food Trucks</button>
       </div>
       {trucks.length === 0 ? (
         <p>There are no trucks available near you.</p>
       ) : (
         <ul className="food-truck-list">
           {trucks.map(truck => (
-            <li key={truck.locationid} className="food-truck">
-              <h2>{truck.Applicant}</h2>
-              <p>{truck.LocationDescription}</p>
-              <p>Address: {truck.Address}</p>
-              <p>Food Items: {truck.FoodItems}</p>
-            </li>
+            <a href={truck.Schedule} target="_blank" rel="noopener noreferrer" key={truck.locationid} className="food-truck-link">
+              <li className="food-truck">
+                <img src="/foodtruckpic.jpeg" alt="Mini Food Truck" className="truck-image" />
+                <div className="text-blurb">
+                  <h2>{truck.Applicant}</h2>
+                  <p>{truck.LocationDescription}</p>
+                  <p>Address: {truck.Address}</p>
+                  <p>Food Items: {truck.FoodItems}</p>
+                </div>
+              </li>
+            </a>
           ))}
         </ul>
       )}
