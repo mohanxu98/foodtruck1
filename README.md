@@ -46,27 +46,22 @@ This project is a food truck locator application that allows users to find nearb
 
 8. **Run the backend server**
       ```bash
-
-    python app.py
+      python app.py
 
 ## Frontend Setup
 
 1. **Navigate to the frontend directory**
 
-       ```bash
-
-    cd frontend
+   ```bash
+   cd frontend
 3. **Install frontend dependencies**
 
-       ```bash
-
-    npm install
+   ```bash
+   npm install
 
 4. **Start the frontend development server**
 
     ```bash
-
     npm start
-
 
 
