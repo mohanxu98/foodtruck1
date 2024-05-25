@@ -44,23 +44,28 @@ This project is a food truck locator application that allows users to find nearb
 7. **Prepare your data** 
     Make sure you have a CSV file named food-truck-data.csv with the necessary food truck data in the project directory.
 
-8. **Run the backend server** 
+8. **Run the backend server**
+      ```bash
+
     python app.py
 
 ## Frontend Setup
 
 1. **Navigate to the frontend directory**
 
-    bash
-    cd frontend
-2. **Install frontend dependencies**
+       ```bash
 
-    bash
+    cd frontend
+3. **Install frontend dependencies**
+
+       ```bash
+
     npm install
 
-3. **Start the frontend development server**
+4. **Start the frontend development server**
 
-    bash
+    ```bash
+
     npm start
 
 
