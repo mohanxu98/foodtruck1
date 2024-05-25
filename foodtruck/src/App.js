@@ -41,6 +41,7 @@ function App() {
         // Check if the response data is an array
         if (Array.isArray(response.data)) {
           console.log('Response data is an array');
+          setError(''); // Clear any previous errors
           setTrucks(response.data);
         } else {
           console.error('Expected an array but got', response.data);
@@ -65,7 +66,7 @@ function App() {
         setGeoError(false);
       }, (error) => {
         console.error('Error getting geolocation:', error);
-        setError('Error getting geolocation. Please enter coordinates manually.');
+        setError('Error getting geolocation. If you want to use current location, please enable location setting with Google');
         setGeoError(true);
         setUseGeolocation(false);
       });
@@ -73,9 +74,7 @@ function App() {
   }, [useGeolocation]);
 
   useEffect(() => {
-    if (lat && lon) {
-      fetchTrucks();
-    }
+   
   }, [lat, lon, fetchTrucks]);
 
   const handleToggleGeolocation = () => {
